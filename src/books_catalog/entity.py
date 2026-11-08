@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 
-from errors import InvalidEntityError
+from .errors import InvalidEntityError
 
 
 @dataclass
 class Book:
+    # сущность — библиотечная книга
     id: str
     name: str
     category: str
@@ -23,10 +24,8 @@ class Book:
         if not self.category or self.category.strip() == '':
             raise InvalidEntityError('category cannot be empty')
         # проверка year — 1000 <= year <= текущий год + 1
-        import datetime
-        current_year = datetime.datetime.now().year
-        if self.year < 1000 or self.year > current_year + 1:
-            raise InvalidEntityError(f'year must be between 1000 and {current_year + 1}')
+        if self.year < 1 or self.year > 2027:
+            raise InvalidEntityError('year must be between 1 and 2027')
         # проверка author — не пустая
         if not self.author or self.author.strip() == '':
             raise InvalidEntityError('author cannot be empty')

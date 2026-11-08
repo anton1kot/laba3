@@ -1,20 +1,25 @@
-
-
 class BooksCatalogError(Exception):
-    # Базовый класс ошибок пакета books_catalog.
-    pass
-
-class InvalidEntityError(BooksCatalogError):
-    pass
-
-class DuplicateIdError(BooksCatalogError):
-    pass
-
-class NotFoundError(BooksCatalogError):
+    # базовый класс ошибок
     pass
 
 class UnsupportedVersionError(BooksCatalogError):
+    # неподдерживаемая версия формата
     pass
 
-class CorruptedFileError(BooksCatalogError):
+class InvalidEntityError(BooksCatalogError):
+    # некорректная сущность
+    pass
+
+
+class DuplicateIdError(BooksCatalogError):
+    # дубликат ID
+    pass
+
+
+class NotFoundError(BooksCatalogError):
+    # объект не найден
+    pass
+
+class BadFileError(BooksCatalogError):
+    # повреждённый файл
     pass
