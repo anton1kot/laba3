@@ -150,7 +150,7 @@ catalog = load('books.json')
 Формат JSON:
 ```json
 {
-    "format_version": 2,
+    "format_version": 1,
     "items": [
         {"id": "BK-001", "name": "...", "category": "...", "year": 1869, "author": "...", "isbn": "..."}
     ]
