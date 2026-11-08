@@ -78,7 +78,7 @@ def test_find_by_category():
     assert len(result) == 2
 
 
-def test_find_by_name_case_insensitive():
+def test_find_by_name_case():
     # поиск по имени нечувствителен к регистру
     catalog = Catalog()
     book = Book('BK-001', 'Война и мир', 'роман', 1869, 'Л.Н. Толстой', 'ISBN-978-5-17-09')

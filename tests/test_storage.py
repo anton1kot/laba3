@@ -10,7 +10,7 @@ from books_catalog.errors import BadFileError, UnsupportedVersionError
 from books_catalog.storage import load, save
 
 
-def test_json_round_trip():
+def test_json():
     # save → load = исходный каталог
     catalog = Catalog()
     b1 = Book('BK-001', 'Война и мир', 'роман', 1869, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
@@ -31,7 +31,7 @@ def test_json_round_trip():
         os.unlink(tmp_path)
 
 
-def test_save_preserves_all_fields():
+def test_fields():
     # сохраняются все поля
     catalog = Catalog()
     book = Book('BK-001', 'Война и мир', 'роман', 1869, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
@@ -67,8 +67,8 @@ def test_unsupported_version():
         os.unlink(tmp_path)
 
 
-def test_corrupted_json():
-    # повреждённый JSON → CorruptedFileError
+def test_bad_json():
+    # повреждённый JSON → BadFileError
     with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False, encoding='utf-8') as f:
         f.write('{not valid json}')
         tmp_path = f.name

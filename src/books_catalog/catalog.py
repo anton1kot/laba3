@@ -1,5 +1,4 @@
 from .errors import DuplicateIdError, NotFoundError
-from .entity import Book
 
 
 class Catalog:
@@ -48,6 +47,7 @@ class Catalog:
         return len(self._items)
 
     def __iter__(self):
+        # итерация в порядке добавления
         for id in self._order:
             yield self._items[id]
 

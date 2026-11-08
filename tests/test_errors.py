@@ -1,8 +1,7 @@
-import pytest
 
 from src.books_catalog.errors import (
-    BooksCatalogError,
     BadFileError,
+    BooksCatalogError,
     DuplicateIdError,
     InvalidEntityError,
     NotFoundError,

@@ -39,16 +39,16 @@ def test_invalid_category_empty():
         Book('BK-001', 'Война и мир', '', 1869, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
 
 
-def test_invalid_year_too_low():
-    # создание с year < 1000
+def test_invalid_year_before_christmas():
+    # создание с year < 0
     with pytest.raises(InvalidEntityError):
-        Book('BK-001', 'Война и мир', 'роман', 999, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
+        Book('BK-001', 'Война и мир', 'роман', -999, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
 
 
 def test_invalid_year_future():
-    # создание с слишком далёким будущим годом
+    # создание со слишком далёким будущим годом
     with pytest.raises(InvalidEntityError):
-        Book('BK-001', 'Война и мир', 'роман', 3000, 'Л.Н. Толстой', 'ISBN-978-5-17-09')
+        Book('BK-001', 'Война и мир', 'роман', 2067, 'Газан', 'ISBN-228-5-67-69')
 
 
 def test_invalid_author_empty():

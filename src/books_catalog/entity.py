@@ -23,7 +23,7 @@ class Book:
         # проверка category — не пустая
         if not self.category or self.category.strip() == '':
             raise InvalidEntityError('category cannot be empty')
-        # проверка year — 1000 <= year <= текущий год + 1
+        # проверка year — 1 <= year <= 2027
         if self.year < 1 or self.year > 2027:
             raise InvalidEntityError('year must be between 1 and 2027')
         # проверка author — не пустая

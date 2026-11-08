@@ -3,8 +3,8 @@ import sys
 from books_catalog.catalog import Catalog
 from books_catalog.entity import Book
 from books_catalog.errors import (
-    BooksCatalogError,
     BadFileError,
+    BooksCatalogError,
     DuplicateIdError,
     InvalidEntityError,
     NotFoundError,
@@ -60,7 +60,7 @@ Usage:
         Найти книги по названию
 
     python -m books_catalog list
-        Вывести все книги
+        Вывести все книги (итерация в порядке добавления)
 
     python -m books_catalog save --path PATH
         Сохранить каталог в JSON файл
