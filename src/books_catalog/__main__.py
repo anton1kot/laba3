@@ -75,46 +75,27 @@ Usage:
     # если есть сохранённый файл, загружаем его
     if 'load' in args.mode or 'save' in args.mode:
         if 'path' in args.options:
-            try:
-                catalog = load(args.options['path'])
-            except (BadFileError, UnsupportedVersionError) as er:
-                sys.stderr.write(f'{type(er).__name__}: {er}')
-                sys.exit(2)
+            catalog = load(args.options['path'])
 
     if args.mode == 'add':
-        try:
-            book = Book(
-                id=args.options.get('id', ''),
-                name=args.options.get('name', ''),
-                category=args.options.get('category', ''),
-                year=int(args.options.get('year', '0')),
-                author=args.options.get('author', ''),
-                isbn=args.options.get('isbn', '')
-            )
-            catalog.add(book)
-            sys.stdout.write(f'added: {book.id} — {book.name}\n')
-        except InvalidEntityError as er:
-            sys.stderr.write(f'InvalidEntityError: {er}')
-            sys.exit(2)
-        except DuplicateIdError as er:
-            sys.stderr.write(f'DuplicateIdError: {er}')
-            sys.exit(2)
+        book = Book(
+            id=args.options.get('id', ''),
+            name=args.options.get('name', ''),
+            category=args.options.get('category', ''),
+            year=int(args.options.get('year', '0')),
+            author=args.options.get('author', ''),
+            isbn=args.options.get('isbn', '')
+        )
+        catalog.add(book)
+        sys.stdout.write(f'added: {book.id} — {book.name}\n')
 
     elif args.mode == 'get':
-        try:
-            book = catalog.get(args.options.get('id', ''))
-            sys.stdout.write(f'{book.id} | {book.name} | {book.category} | {book.year} | {book.author} | {book.isbn}\n')
-        except NotFoundError as er:
-            sys.stderr.write(f'NotFoundError: {er}')
-            sys.exit(2)
+        book = catalog.get(args.options.get('id', ''))
+        sys.stdout.write(f'{book.id} | {book.name} | {book.category} | {book.year} | {book.author} | {book.isbn}\n')
 
     elif args.mode == 'remove':
-        try:
-            catalog.remove(args.options.get('id', ''))
-            sys.stdout.write(f'removed: {args.options.get("id", "")}\n')
-        except NotFoundError as er:
-            sys.stderr.write(f'NotFoundError: {er}')
-            sys.exit(2)
+        catalog.remove(args.options.get('id', ''))
+        sys.stdout.write(f'removed: {args.options.get("id", "")}\n')
 
     elif args.mode == 'find':
         category = args.options.get('category', '')
@@ -140,24 +121,16 @@ Usage:
         if not path:
             sys.stderr.write('Please specify --path for save')
             sys.exit(2)
-        try:
-            save(catalog, path)
-            sys.stdout.write(f'saved: {len(catalog)} books to {path}\n')
-        except Exception as er:
-            sys.stderr.write(f'Error: {er}')
-            sys.exit(2)
+        save(catalog, path)
+        sys.stdout.write(f'saved: {len(catalog)} books to {path}\n')
 
     elif args.mode == 'load':
         path = args.options.get('path', '')
         if not path:
             sys.stderr.write('Please specify --path for load')
             sys.exit(2)
-        try:
-            catalog = load(path)
-            sys.stdout.write(f'loaded: {len(catalog)} books from {path}\n')
-        except (BadFileError, UnsupportedVersionError) as er:
-            sys.stderr.write(f'{type(er).__name__}: {er}')
-            sys.exit(2)
+        catalog = load(path)
+        sys.stdout.write(f'loaded: {len(catalog)} books from {path}\n')
 
     else:
         sys.stderr.write('Unknown command. For help: python -m books_catalog --help\n')
